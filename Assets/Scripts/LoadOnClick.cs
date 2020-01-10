@@ -9,6 +9,7 @@ public class LoadOnClick : MonoBehaviour
     public void LoadScene(int level) //index of level on build settings
     {
         loadingImage.SetActive(true);
+        Destroy(this.gameObject);
         Application.LoadLevel(level);
     }
 }
