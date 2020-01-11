@@ -10,13 +10,14 @@ public class BallScriptAttacher : MonoBehaviour
     
     void Awake() {
         bool found = false;
-        for (int i = 0; i < 10; i++){
-            GameObject catObject = GameObject.Find("Cat" + i.ToString()); 
-            print("Cat"+i.ToString());
+        foreach (GameObject catObject in GameObject.Find("CatList").GetComponent<CatList>().catObjectList){
             if(catObject != null) {
-                found = true;
-                catObject.transform.position = new Vector2(Random.Range(-85, 85), Random.Range(-47, 47));
-                catObject.AddComponent<MoveBall>();
+                if (catObject.GetComponent<MoveBall>() == null) {
+                    catObject.transform.position = new Vector2(Random.Range(-23, 23), Random.Range(-11, 11));
+                    catObject.AddComponent<MoveBall>();
+                    catObject.GetComponent<MoveBall>().minPos = new Vector2(-23, -11);
+                    catObject.GetComponent<MoveBall>().maxPos = new Vector2(23, 11);
+                }
                 catObject.SetActive(true);
             }
             

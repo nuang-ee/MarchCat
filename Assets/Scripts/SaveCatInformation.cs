@@ -26,5 +26,6 @@ public class SaveCatInformation : MonoBehaviour
         catObject.SetActive(false);
         SceneManager.LoadScene(level);
         catList.catlist.Add(cat);
+        catList.catObjectList.Add(catObject);
     }
 }

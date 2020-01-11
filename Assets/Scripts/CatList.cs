@@ -17,6 +17,7 @@ public class CatList : MonoBehaviour
 
 //Modify here to set Data Variables if you want to 
     public List<Cat> catlist;
+    public List<GameObject> catObjectList;
 //=============================================
     void Awake() {
         if (CatList._instance == null){

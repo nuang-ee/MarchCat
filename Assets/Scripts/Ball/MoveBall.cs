@@ -10,7 +10,7 @@ public class MoveBall : MonoBehaviour
     private Transform ballTf;
     private Vector3 ballPos;
     private Vector2 moveValue;
-    private float moveSpeed = 0.15f;
+    private float moveSpeed = 0.30f;
 
     void Awake()
     {
