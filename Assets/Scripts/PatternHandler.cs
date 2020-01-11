@@ -14,9 +14,12 @@ public class PatternHandler : MonoBehaviour
     private List<AudioHelm.Note> existingNotes = new List<AudioHelm.Note>();
     public int key;
     public string InstName;
+    public Button ResetButon;
+
 
     private int count;
     private Color initColor;
+
     
 
     // Start is called before the first frame update
@@ -26,9 +29,14 @@ public class PatternHandler : MonoBehaviour
         sequencer.Clear();
         Color normalColor = patternElements[0].colors.normalColor;
         initColor = new Color(normalColor.r, normalColor.g, normalColor.b);
+        
         sequencer.beatEvent.AddListener(delegate
         {
             ToggleBackgroundChange();
+        });
+        ResetButon.onClick.AddListener(delegate
+        {
+            ResetNote();
         });
         //sequencer.
         //Pattern Color Selection
@@ -51,6 +59,7 @@ public class PatternHandler : MonoBehaviour
                 break;
             }
         }
+        Debug.Log("selected_idx : " + selected_idx.ToString());
         if (selected_idx == -1)
         {
             Debug.Log("PatternHandler : SetSequencerNoteErr");
@@ -89,5 +98,16 @@ public class PatternHandler : MonoBehaviour
         patternElements[count].colors = currentColor;
 
         count = (count + 1) % 16;
+    }
+
+    void ResetNote() {
+        for (int i = 0; i < patternElements.Length; i++)
+        {
+            if (patternElements[i].isOn) {
+                Debug.Log("Reset Toggle : " + i.ToString());
+                patternElements[i].isOn = false;
+            }
+        }
+        //existingNotes = new List<AudioHelm.Note>();
     }
 }
