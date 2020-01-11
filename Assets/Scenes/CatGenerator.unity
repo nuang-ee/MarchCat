@@ -658,7 +658,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1293189555}
+      - m_Target: {fileID: 852893872}
         m_MethodName: onInstrumentTypeClick
         m_Mode: 3
         m_Arguments:
@@ -1679,7 +1679,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1293189555}
+      - m_Target: {fileID: 852893872}
         m_MethodName: onInstrumentTypeClick
         m_Mode: 3
         m_Arguments:
@@ -1757,7 +1757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675969918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.21, y: 2.04, z: -1.2013483}
+  m_LocalPosition: {x: 7.16, y: 1.72, z: -1.2013483}
   m_LocalScale: {x: 6.961, y: 6.961, z: 6.961}
   m_Children: []
   m_Father: {fileID: 1777897698}
@@ -2364,6 +2364,8 @@ MonoBehaviour:
   previousPanel: {fileID: 2145279110}
   nextPanel: {fileID: 896066697}
   animator: {fileID: 1192024020}
+  instrumentAnimators:
+  - {fileID: 675969920}
   moveToInstrumentsButton: {fileID: 1277716946}
   speed: 1
 --- !u!114 &852893872
@@ -2378,11 +2380,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132f6204b4cf7784fa1b5b3172bc9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1192024020}
-  button1: {fileID: 2043155565}
-  button2: {fileID: 838220911}
-  button3: {fileID: 1967192285}
-  button4: {fileID: 1078535803}
+  catAnimator: {fileID: 1192024020}
+  instrumentAnimator:
+  - {fileID: 1898807548}
+  - {fileID: 675969918}
+  - {fileID: 2005507145}
+  - {fileID: 205033419}
+  buttons:
+  - {fileID: 2043155565}
+  - {fileID: 838220911}
+  - {fileID: 1967192285}
+  - {fileID: 1078535803}
+  cat: {fileID: 1777897699}
 --- !u!114 &852893873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3507,7 +3516,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a1b95c877c59742a346b3f143f636a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrument: {fileID: 0}
+  notes: []
+  sequenceLength: 0
+  catType: 
+  instrumentName: 
+  instrumentType: 0
+  sequencer: {fileID: 0}
 --- !u!1 &1215853622
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,11 +3936,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132f6204b4cf7784fa1b5b3172bc9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  button3: {fileID: 0}
-  button4: {fileID: 0}
+  catAnimator: {fileID: 0}
+  instrumentAnimator: []
+  buttons: []
+  cat: {fileID: 0}
 --- !u!114 &1293189556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3939,11 +3952,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132f6204b4cf7784fa1b5b3172bc9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  button1: {fileID: 0}
-  button2: {fileID: 0}
-  button3: {fileID: 0}
-  button4: {fileID: 0}
+  catAnimator: {fileID: 0}
+  instrumentAnimator: []
+  buttons: []
+  cat: {fileID: 0}
 --- !u!1 &1311260511
 GameObject:
   m_ObjectHideFlags: 0
@@ -4797,6 +4809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777897698}
   - component: {fileID: 1777897697}
+  - component: {fileID: 1777897699}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -4869,6 +4882,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1777897699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777897696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a1b95c877c59742a346b3f143f636a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: []
+  sequenceLength: 0
+  catType: 
+  instrumentName: 
+  instrumentType: 0
+  sequencer: {fileID: 0}
 --- !u!1 &1898807548
 GameObject:
   m_ObjectHideFlags: 0
@@ -4973,7 +5004,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1293189555}
+      - m_Target: {fileID: 852893872}
         m_MethodName: onInstrumentTypeClick
         m_Mode: 3
         m_Arguments:
@@ -5485,7 +5516,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8207547, g: 0.54323506, b: 0.5149074, a: 1}
+    m_HighlightedColor: {r: 0.5647059, g: 0.79607844, b: 0.69803923, a: 1}
     m_PressedColor: {r: 0.89411765, g: 0.7169812, b: 0.7169812, a: 1}
     m_DisabledColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5504,7 +5535,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1293189555}
+      - m_Target: {fileID: 852893872}
         m_MethodName: onInstrumentTypeClick
         m_Mode: 3
         m_Arguments:
