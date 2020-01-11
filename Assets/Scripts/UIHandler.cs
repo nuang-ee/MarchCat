@@ -22,8 +22,27 @@ public class UIHandler : MonoBehaviour
         if (moving) {
             float step = speed * Time.deltaTime;
             animator.transform.position = target;
-            foreach (Animator instrument in instrumentAnimators) {
-                instrument.transform.position = instrumentTarget;
+            for (int i=0; i < instrumentAnimators.Count; i++) {
+                Vector2 temp = new Vector2(0, 0);
+                switch (i) {
+                    case 0:
+                        temp = new Vector2(-0.2f, -0.5f);
+                        break;
+                    case 1:
+                        temp = new Vector2(0, 0);
+                        break;
+                    case 2:
+                        temp = new Vector2(-0.2f, -0.2f);
+                        break;
+                    case 3:
+                        temp = new Vector2(-0.3f, -1.3f);
+                        break;
+                    default:
+                        print("error");
+                        break;
+                }
+                temp = temp + instrumentTarget;
+                instrumentAnimators[i].transform.position = temp;
             }
             moving = false;
         }
@@ -40,7 +59,6 @@ public class UIHandler : MonoBehaviour
             moving = true;
             target = target1;
             instrumentTarget = instrumetTarget1;
-
         }
         else if (mode == 2) {
             previousPanel.gameObject.SetActive(true);

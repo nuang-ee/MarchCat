@@ -31,4 +31,8 @@ public class Cat : MonoBehaviour
         this.sequencer = seq;
     }
 
+    void Awake() {
+        DontDestroyOnLoad (this);
+    }
+
 }
