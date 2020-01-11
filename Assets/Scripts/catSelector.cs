@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class catSelector : MonoBehaviour
 {
     int index;
-    public Animator animator;
-    public Button button1, button2, button3, button4;
+    public Animator catAnimator;
+    public List<GameObject> instrumentAnimator;
+    public List<Button> buttons;
     public Cat cat;
     public void onCatTypeClick(int index) {
-        button1.interactable = true;
-        button2.interactable = true;
-        button3.interactable = true;
-        button4.interactable = true;
+        foreach (Button b in buttons) {
+            b.interactable = true;
+        }
+        buttons[index].interactable = false;
         cat.SetCatType(index);
-        animator.SetInteger("cat_Style", index);
-        GetComponent<Button>().interactable = false;
-        
+        catAnimator.SetInteger("cat_Style", index);
         print("cat selected!\n");
     }
     
 
     public void onInstrumentTypeClick(int index) {
-        
         cat.SetInstrument(index);
+        foreach (GameObject item in instrumentAnimator) {
+            item.SetActive(false);
+        }
+        instrumentAnimator[index].SetActive(true);
     }
 }

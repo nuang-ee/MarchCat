@@ -6,10 +6,22 @@ public class DontDestroy : MonoBehaviour
 {
     private static DontDestroy _instance ;
 
-    void Awake() {
-        if(!_instance) _instance = this;
-        else Destroy(this.gameObject);
-        
-        DontDestroyOnLoad(gameObject);
+    public static DontDestroy Instance {
+        get {
+            if (_instance == null)
+                _instance = new DontDestroy();
+            return _instance;
+        }
+    }
+
+    void Awake(){
+        //SINGLETON PATTERN
+        if (DontDestroy._instance == null){
+            DontDestroyOnLoad (this);
+            DontDestroy._instance = this;
+
+        } else {
+            Destroy (this.gameObject);
+        }
     }
 }
