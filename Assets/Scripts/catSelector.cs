@@ -8,12 +8,13 @@ public class catSelector : MonoBehaviour
     int index;
     public Animator animator;
     public Button button1, button2, button3, button4;
+    public Cat cat;
     public void onCatTypeClick(int index) {
         button1.interactable = true;
         button2.interactable = true;
         button3.interactable = true;
         button4.interactable = true;
-        Cat.catTypeIndex = index;
+        cat.SetCatType(index);
         animator.SetInteger("cat_Style", index);
         GetComponent<Button>().interactable = false;
         
@@ -22,6 +23,7 @@ public class catSelector : MonoBehaviour
     
 
     public void onInstrumentTypeClick(int index) {
-        Cat.instrumentTypeIndex = index;
+        
+        cat.SetInstrument(index);
     }
 }
