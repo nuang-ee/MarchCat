@@ -14,7 +14,7 @@ public class PatternHandler : MonoBehaviour
     private List<AudioHelm.Note> existingNotes = new List<AudioHelm.Note>();
     public int key;
     public string InstName;
-    public Button ResetButon;
+    public Button ResetButton;
 
 
     private int count;
@@ -34,7 +34,7 @@ public class PatternHandler : MonoBehaviour
         {
             ToggleBackgroundChange();
         });
-        ResetButon.onClick.AddListener(delegate
+        ResetButton.onClick.AddListener(delegate
         {
             ResetNote();
         });
