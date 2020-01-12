@@ -8,15 +8,15 @@ using AudioHelm;
 
 public class PatternHandler : MonoBehaviour
 {
-    public Toggle[] patternElements;
+    
     public AudioHelm.AudioHelmClock clock;
     public AudioHelm.Sequencer sequencer;
-    private List<AudioHelm.Note> existingNotes = new List<AudioHelm.Note>();
     public int key;
     public string InstName;
     public Button ResetButton;
 
-
+    private Toggle[] patternElements;
+    private List<AudioHelm.Note> existingNotes = new List<AudioHelm.Note>();
     private int count;
     private Color initColor;
 
@@ -25,10 +25,13 @@ public class PatternHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        patternElements = GetComponentsInChildren<Toggle>();
+        Debug.Log("NoteSet # of toggle : " + patternElements.Length);
         count = 0;
         sequencer.Clear();
         Color normalColor = patternElements[0].colors.normalColor;
         initColor = new Color(normalColor.r, normalColor.g, normalColor.b);
+
         
         sequencer.beatEvent.AddListener(delegate
         {
@@ -44,9 +47,7 @@ public class PatternHandler : MonoBehaviour
         //    for (int )
         //}
     }
-
-    void PatternColorSelect() {
-    }
+    
     public List<AudioHelm.Note> GetListofNote() {
         return existingNotes;
     }

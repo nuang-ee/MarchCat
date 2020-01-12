@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
-    public Toggle toggle;
-    public PatternHandler patternHandler;
+    private Toggle toggle;
+    private PatternHandler patternHandler;
 
     private void Start()
     {
+        toggle = GetComponentInChildren<Toggle>();
+        patternHandler = GetComponentInParent<PatternHandler>();
         toggle.onValueChanged.AddListener(delegate
         {
             patternHandler.SetSequencerNote(toggle);

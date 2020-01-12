@@ -235,6 +235,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 533, y: 400}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &81098177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 315379767492214067, guid: 549eca69c87fc18419acc0e44ef97389,
+    type: 3}
+  m_PrefabInstance: {fileID: 8344328716942030886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &310743805
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,6 +2640,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5476186752469895100, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476186752469895100, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
       propertyPath: clock
       value: 
       objectReference: {fileID: 1561454331}
@@ -2641,6 +2658,11 @@ PrefabInstance:
       propertyPath: ResetButton
       value: 
       objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
       propertyPath: clock
@@ -2660,6 +2682,16 @@ PrefabInstance:
         type: 3}
       propertyPath: key
       value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 81098177}
+    - target: {fileID: 8344328717236682744, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344328717236682744, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
@@ -2683,6 +2715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344328717283136319, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717283136319, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
       propertyPath: clock
       value: 
       objectReference: {fileID: 1561454331}
@@ -2700,6 +2737,11 @@ PrefabInstance:
         type: 3}
       propertyPath: key
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717359819604, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344328717359819604, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
@@ -2723,6 +2765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344328717365479466, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717365479466, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
       propertyPath: clock
       value: 
       objectReference: {fileID: 1561454331}
@@ -2740,6 +2787,11 @@ PrefabInstance:
         type: 3}
       propertyPath: key
       value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717597809800, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344328717597809800, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
@@ -2763,6 +2815,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344328717967165360, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717967165360, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
       propertyPath: clock
       value: 
       objectReference: {fileID: 1561454331}
@@ -2780,6 +2837,11 @@ PrefabInstance:
         type: 3}
       propertyPath: key
       value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718092941448, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344328718092941448, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
@@ -2803,6 +2865,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344328718470079562, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718470079562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
       propertyPath: clock
       value: 
       objectReference: {fileID: 1561454331}
@@ -2823,6 +2890,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344328718475152590, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718475152590, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
       propertyPath: clock
       value: 
       objectReference: {fileID: 1561454331}
@@ -2840,6 +2912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: key
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718548725562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: patternElements.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8344328718548725562, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
