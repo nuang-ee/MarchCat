@@ -6,47 +6,72 @@ using UnityEngine.UI;
 public class UIHandler : MonoBehaviour
 {
     public GameObject previousPanel;
+    public GameObject catObject;
     public GameObject nextPanel;
-    public Animator animator;
-    public List<Animator> instrumentAnimators;
+    public GameObject instrumentSprite;
+    
     public Button moveToInstrumentsButton;
+
     public float speed = 500.0f;
-    private static Vector2 target1 = new Vector2(-4, -1);
-    private static Vector2 target2 = new Vector2(4, -1);
-    private static Vector2 instrumetTarget1 = new Vector2(-4.3f, -1);
-    private static Vector2 instrumetTarget2 = new Vector2(3.7f, -1);
+
+    private static Vector2 target1;
+    private static Vector2 target2;
+
     private Vector2 target;
-    private Vector2 instrumentTarget;
-    private bool moving;
+
+    public bool moving;
+
+    
+    private float cameraHeight = new float();
+    private float cameraWidth = new float();
+
+    private void Awake()
+    {
+        Camera cam = Camera.main;
+        cameraHeight = 2f * cam.orthographicSize;
+        cameraWidth = cameraHeight * cam.aspect;
+        target1 = new Vector2(-cameraWidth * 0.1f, -cameraHeight * 0.1f);
+        target2 = new Vector2(cameraWidth * 0.2f , -cameraHeight * 0.1f);
+        print(cameraHeight.ToString() + " || " + cameraWidth.ToString());
+        catObject.transform.position = target2;
+    }
+
+
     void Update() {
         if (moving) {
-            float step = speed * Time.deltaTime;
-            animator.transform.position = target;
-            for (int i=0; i < instrumentAnimators.Count; i++) {
+            //float step = speed * Time.deltaTime;
+            catObject.transform.position = target;
+            print(catObject.transform.position.x.ToString() + "||" + catObject.transform.position.y.ToString());
+
+            if (catObject.GetComponent<Cat>().instrumentIndex != -1)
+            {
+                int i = catObject.GetComponent<Cat>().instrumentIndex;
                 Vector2 temp = new Vector2(0, 0);
-                switch (i) {
+                switch (i)
+                {
                     case 0:
-                        temp = new Vector2(-0.2f, -0.5f);
+                        temp = new Vector2(-cameraWidth * 0.02f, 0);
                         break;
                     case 1:
-                        temp = new Vector2(0, 0);
+                        temp = new Vector2(-cameraWidth * 0.2f * 0.1f, 0);
                         break;
                     case 2:
-                        temp = new Vector2(-0.2f, -0.2f);
+                        temp = new Vector2(-cameraWidth * 0.02f, 0);
                         break;
                     case 3:
-                        temp = new Vector2(-0.3f, -1.3f);
+                        temp = new Vector2(-cameraWidth * 0.02f, - cameraHeight / 8);
                         break;
                     default:
                         print("error");
                         break;
                 }
-                temp = temp + instrumentTarget;
-                instrumentAnimators[i].transform.position = temp;
+                Vector2 parentPosition = target;
+                instrumentSprite.transform.position = temp + target;
+                moving = false;
             }
-            moving = false;
         }
-        if (animator.GetInteger("cat_Style") >= 0) {
+
+        if (catObject.GetComponent<Cat>().characterSelected) {
             moveToInstrumentsButton.interactable = true;
         }
         else moveToInstrumentsButton.interactable = false;
@@ -58,14 +83,12 @@ public class UIHandler : MonoBehaviour
             nextPanel.gameObject.SetActive(true);
             moving = true;
             target = target1;
-            instrumentTarget = instrumetTarget1;
         }
         else if (mode == 2) {
             previousPanel.gameObject.SetActive(true);
             nextPanel.gameObject.SetActive(false);
             moving = true;
             target = target2;
-            instrumentTarget = instrumetTarget2;
         }
     }
 }

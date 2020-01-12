@@ -7,7 +7,10 @@ public class Cat : MonoBehaviour
 {
     public static readonly string[] catTypeArray = { "plain", "strong", "sensitive", "supreme" };
     public static readonly string[] instrumentNames = { "bass", "drum", "guitar", "synthesizer"};
-    
+
+    public bool characterSelected = false;
+    public bool instrumentSelected = false;
+
     //Note Information of cat to play
     public List<AudioHelm.Note> notes; 
     public int sequenceLength;
@@ -15,6 +18,7 @@ public class Cat : MonoBehaviour
     public string catType; //Type of Cat, references catTypeArray
     public string instrumentName; //Name of Instrument, references instrumentNames array
     public bool instrumentType; //true when melodic, false when drum.
+    public int instrumentIndex = -1;
 
     public AudioHelm.Sequencer sequencer;
 
