@@ -81,7 +81,7 @@ public class PatternHandler : MonoBehaviour
     }
 
     void ToggleBackgroundChange() {
-        ColorBlock newColorBlock;
+        //ColorBlock newColorBlock;
         if (count == 0) {
             ColorBlock prevcolor = patternElements[15].colors;
             prevcolor.normalColor = initColor;

@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 887052090}
   - component: {fileID: 887052089}
   m_Layer: 5
-  m_Name: Drum
+  m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2068,8 +2068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83364f0d161c38c4aaba2285f1b47e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveButton: {fileID: 0}
-  sequencer: {fileID: 0}
+  SaveButton: {fileID: 1120241016}
+  sequencer: {fileID: 918432726}
 --- !u!4 &1290496891
 Transform:
   m_ObjectHideFlags: 0
@@ -2432,6 +2432,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867483517}
   m_CullTransparentMesh: 0
+--- !u!1 &2089524869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089524872}
+  - component: {fileID: 2089524871}
+  - component: {fileID: 2089524870}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2089524870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089524869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &2089524871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089524869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &2089524872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089524869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &4107199079564369863 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5418587980893087713, guid: 549eca69c87fc18419acc0e44ef97389,
@@ -2445,6 +2511,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61139147}
     m_Modifications:
+    - target: {fileID: 5016476176057891405, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
     - target: {fileID: 5418587980893087712, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
       propertyPath: m_Name
@@ -2554,6 +2625,241 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476186752469895100, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 5476186752469895100, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 5476186752469895100, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328716922500830, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717236682744, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328717236682744, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328717236682744, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328717236682744, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717283136319, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328717283136319, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328717283136319, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328717283136319, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717359819604, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328717359819604, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328717359819604, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328717359819604, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 69
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717365479466, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328717365479466, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328717365479466, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328717365479466, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717597809800, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328717597809800, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328717597809800, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328717597809800, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328717967165360, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328717967165360, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328717967165360, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328717967165360, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718092941448, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328718092941448, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328718092941448, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328718092941448, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 61
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718470079562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328718470079562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328718470079562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328718470079562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718475152590, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328718475152590, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328718475152590, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328718475152590, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344328718548725562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: clock
+      value: 
+      objectReference: {fileID: 1561454331}
+    - target: {fileID: 8344328718548725562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: sequencer
+      value: 
+      objectReference: {fileID: 918432726}
+    - target: {fileID: 8344328718548725562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: ResetButton
+      value: 
+      objectReference: {fileID: 702877804}
+    - target: {fileID: 8344328718548725562, guid: 549eca69c87fc18419acc0e44ef97389,
+        type: 3}
+      propertyPath: key
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 8344328718927417909, guid: 549eca69c87fc18419acc0e44ef97389,
         type: 3}
