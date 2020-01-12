@@ -25,6 +25,7 @@ public class SequencerSaveHandler : MonoBehaviour
         Cat currentCat = catlist.catlist[catlist.catlist.Count - 1];
         DontDestroyOnLoad(sequencer);
         currentCat.SetSequencer(sequencer);
+        sequencer.transform.parent = catlist.catObjectList[catlist.catObjectList.Count - 1].transform;
         SceneManager.LoadScene(0);
     }
 

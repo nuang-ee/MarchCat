@@ -1297,15 +1297,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419265148}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4797}
-  m_LocalScale: {x: 186.6566, y: 158.6208, z: 53.3}
+  m_LocalPosition: {x: 0, y: 0, z: -1500}
+  m_LocalScale: {x: 192.6957, y: 163.75284, z: 55.02447}
   m_Children: []
   m_Father: {fileID: 134065318}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5.2270813, y: 66.209366}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &434701115
@@ -1701,7 +1701,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.816733
+  orthographic size: 7.5176163
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2188,6 +2188,7 @@ MonoBehaviour:
   instrumentSprite: {fileID: 1161794458}
   moveToInstrumentsButton: {fileID: 1277716946}
   speed: 1
+  moving: 0
 --- !u!114 &852893872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2200,7 +2201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132f6204b4cf7784fa1b5b3172bc9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catObject: {fileID: 1777897696}
   catSprite: {fileID: 1192024019}
   instrumentSprite: {fileID: 1161794458}
   instrumentButtons:
@@ -2214,6 +2214,7 @@ MonoBehaviour:
   - {fileID: 1967192285}
   - {fileID: 1078535803}
   cat: {fileID: 1777897699}
+  uihandler: {fileID: 852893871}
 --- !u!114 &852893873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3080,7 +3081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161794458}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.79, y: 1.11, z: -1.203125}
+  m_LocalPosition: {x: 0, y: 0, z: -1.203125}
   m_LocalScale: {x: 7.867308, y: 7.867308, z: 7.867308}
   m_Children: []
   m_Father: {fileID: 1777897698}
@@ -3444,7 +3445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192024019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.87, y: 1.87, z: -1.203125}
+  m_LocalPosition: {x: 0, y: 0, z: -1.203125}
   m_LocalScale: {x: 9.142758, y: 9.142758, z: 9.142758}
   m_Children: []
   m_Father: {fileID: 1777897698}
@@ -3864,12 +3865,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132f6204b4cf7784fa1b5b3172bc9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catObject: {fileID: 0}
   catSprite: {fileID: 0}
   instrumentSprite: {fileID: 0}
   instrumentButtons: []
   catTypeButtons: []
   cat: {fileID: 0}
+  uihandler: {fileID: 0}
 --- !u!114 &1293189556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3882,12 +3883,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132f6204b4cf7784fa1b5b3172bc9ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catObject: {fileID: 0}
   catSprite: {fileID: 0}
   instrumentSprite: {fileID: 0}
   instrumentButtons: []
   catTypeButtons: []
   cat: {fileID: 0}
+  uihandler: {fileID: 0}
 --- !u!1 &1311260511
 GameObject:
   m_ObjectHideFlags: 0

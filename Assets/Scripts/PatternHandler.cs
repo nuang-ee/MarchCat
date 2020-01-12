@@ -28,6 +28,7 @@ public class PatternHandler : MonoBehaviour
         patternElements = GetComponentsInChildren<Toggle>();
         Debug.Log("NoteSet # of toggle : " + patternElements.Length);
         count = 0;
+        if (sequencer == null) print("null!");
         sequencer.Clear();
         Color normalColor = patternElements[0].colors.normalColor;
         initColor = new Color(normalColor.r, normalColor.g, normalColor.b);
@@ -36,10 +37,6 @@ public class PatternHandler : MonoBehaviour
         sequencer.beatEvent.AddListener(delegate
         {
             ToggleBackgroundChange();
-        });
-        ResetButton.onClick.AddListener(delegate
-        {
-            ResetNote();
         });
         //sequencer.
         //Pattern Color Selection
@@ -101,7 +98,7 @@ public class PatternHandler : MonoBehaviour
         count = (count + 1) % 16;
     }
 
-    void ResetNote() {
+    public void ResetNote() {
         for (int i = 0; i < patternElements.Length; i++)
         {
             if (patternElements[i].isOn) {

@@ -59,7 +59,7 @@ public class UIHandler : MonoBehaviour
                         temp = new Vector2(-cameraWidth * 0.02f, 0);
                         break;
                     case 3:
-                        temp = new Vector2(-cameraWidth * 0.02f, - cameraHeight / 8);
+                        temp = new Vector2(-cameraWidth * 0.02f, - cameraHeight * 0.1f);
                         break;
                     default:
                         print("error");

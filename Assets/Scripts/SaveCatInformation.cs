@@ -25,6 +25,7 @@ public class SaveCatInformation : MonoBehaviour
         catObject.name = "Cat" + catList.catlist.Count.ToString();
         catObject.SetActive(false);
         SceneManager.LoadScene(level);
+        catObject.transform.parent = GameObject.Find("CatList").transform;
         catList.catlist.Add(cat);
         catList.catObjectList.Add(catObject);
     }
