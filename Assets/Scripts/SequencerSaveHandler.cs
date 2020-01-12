@@ -23,6 +23,7 @@ public class SequencerSaveHandler : MonoBehaviour
         CatList catlist = GameObject.Find("CatList").GetComponent<CatList>();
         Debug.Log("SaveSequenceDataToCat : " + catlist.catlist.Count);
         Cat currentCat = catlist.catlist[catlist.catlist.Count - 1];
+        DontDestroyOnLoad(sequencer);
         currentCat.SetSequencer(sequencer);
         SceneManager.LoadScene(0);
     }
