@@ -12,11 +12,19 @@ public class MoveBall : MonoBehaviour
     private Vector2 moveValue;
     private float moveSpeed = 0.30f;
 
+    private float cameraHeight = new float();
+    private float cameraWidth = new float();
+
     void Awake()
     {
+        Camera cam = Camera.main;
+        cameraHeight = 2f * cam.orthographicSize;
+        cameraWidth = cameraHeight * cam.aspect;
         ballTf = transform;
         ballPos = ballTf.position;
         moveValue = Vector2.one;
+        minPos = new Vector2(-cameraWidth/2f, -cameraHeight/2f);
+        maxPos = new Vector2(cameraWidth/2, cameraHeight/2);
     }
     
     
