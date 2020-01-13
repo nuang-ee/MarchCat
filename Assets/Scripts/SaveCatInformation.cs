@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveCatInformation : MonoBehaviour
 {
+    private const string catString = "Cat";
     public GameObject loadingImage;
     
 
@@ -26,7 +27,10 @@ public class SaveCatInformation : MonoBehaviour
         catObject.SetActive(false);
         SceneManager.LoadScene(level);
         catObject.transform.parent = GameObject.Find("CatList").transform;
+        catObject.tag = catString;
         catList.catlist.Add(cat);
         catList.catObjectList.Add(catObject);
+        GameObject bgm = GameObject.Find("BackgroundMusic");
+        Destroy(bgm);
     }
 }

@@ -12,6 +12,10 @@ public class ClickToLoadAsync : MonoBehaviour
     private AsyncOperation async;
     public void ClickAsync(int level) 
     {
+        if (level == 2) {
+            GameObject bgm = GameObject.Find("BackgroundMusic");
+            Destroy(bgm);
+        }
         loadingImage.SetActive(true);
         StartCoroutine(LoadLevelWithBar(level));
     }

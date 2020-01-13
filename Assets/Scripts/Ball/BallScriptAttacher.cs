@@ -24,4 +24,14 @@ public class BallScriptAttacher : MonoBehaviour
         }
         print(found.ToString());
     }
+
+    public void Detach() {
+        foreach (GameObject catObject in GameObject.Find("CatList").GetComponent<CatList>().catObjectList){
+            if (catObject != null) {
+                if (catObject.GetComponent<MoveBall>() != null)
+                    Destroy(catObject.GetComponent<MoveBall>());
+                catObject.SetActive(false);
+            }
+        }
+    }
 }
