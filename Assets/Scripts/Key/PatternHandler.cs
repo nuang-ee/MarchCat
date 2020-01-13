@@ -18,6 +18,7 @@ public class PatternHandler : MonoBehaviour
     private Color initColor;
     private Sequencer sequencer;
     private AudioHelmClock clock;
+    private HelmPatch patch;
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +49,18 @@ public class PatternHandler : MonoBehaviour
         else if (currentCat.instrumentName == "synthesizer")
         {
             sequencer = GameObject.Find("SynthSequencer").GetComponent<Sequencer>();
+            
         }
         else if (currentCat.instrumentName == "bass")
         {
+            print("Get into the bass");
             sequencer = GameObject.Find("BassSequencer").GetComponent<Sequencer>();
+            patch = GameObject.Find("basspatch").GetComponent<HelmPatch>();
+            print(patch);
+
+            print(GameObject.Find("BassSequencer").GetComponent<HelmController>());
+            GameObject.Find("BassSequencer").GetComponent<HelmController>().LoadPatch(patch);
+            key = key - 12;
         }
         else if (currentCat.instrumentName == "guitar")
         {
