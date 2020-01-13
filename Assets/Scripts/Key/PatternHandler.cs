@@ -37,6 +37,8 @@ public class PatternHandler : MonoBehaviour
         CatList Catlist = GameObject.Find("CatList").GetComponent<CatList>();
         Cat currentCat = Catlist.catlist[Catlist.catlist.Count - 1];
 
+        
+
         print(currentCat.instrumentName);
 
         if (currentCat.instrumentName == "drum")
@@ -59,12 +61,17 @@ public class PatternHandler : MonoBehaviour
             print("this is not good");
         }
 
+        ResetButton = GameObject.Find("ResetButton").GetComponent<Button>();
+
         if (sequencer == null) print("null!");
         sequencer.Clear();
         Color normalColor = patternElements[0].colors.normalColor;
         initColor = new Color(normalColor.r, normalColor.g, normalColor.b);
 
-        
+        ResetButton.onClick.AddListener(delegate
+        {
+            ResetNote();
+        });
         sequencer.beatEvent.AddListener(delegate
         {
             ToggleBackgroundChange();
@@ -111,6 +118,7 @@ public class PatternHandler : MonoBehaviour
 
     void ToggleBackgroundChange() {
         //ColorBlock newColorBlock;
+        print(count);
         if (count == 0) {
             ColorBlock prevcolor = patternElements[15].colors;
             prevcolor.normalColor = initColor;
@@ -126,7 +134,8 @@ public class PatternHandler : MonoBehaviour
         currentColor.normalColor = new Color(initColor.r + 0.2f, initColor.g + 0.2f, initColor.b + 0.2f);
         patternElements[count].colors = currentColor;
 
-        count = (count + 1) % 16;
+        //count = (count + 1) % 16;
+        count = ((int)sequencer.GetSequencerPosition()+3 + 15) % 16;
     }
 
     public void ResetNote() {

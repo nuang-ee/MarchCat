@@ -40,8 +40,8 @@ public class KeySoundHandler : MonoBehaviour
             print("this is not good");
         }
 
-        Button[] WhiteKeys = GameObject.Find("WhiteKey").GetComponentsInChildren<Button>();
-        Button[] BlackKeys = GameObject.Find("BlackKey").GetComponentsInChildren<Button>();
+        Button[] WhiteKeys = gameObject.transform.Find("WhiteKey").GetComponentsInChildren<Button>();
+        Button[] BlackKeys = gameObject.transform.Find("BlackKey").GetComponentsInChildren<Button>();
         Debug.Log(WhiteKeys.Length);
         Debug.Log(BlackKeys.Length);
         for (int i = 0; i < WhiteKeys.Length; i++) {
