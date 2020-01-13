@@ -47,6 +47,7 @@ public class catSelector : MonoBehaviour
             b.interactable = true;
         }
         instrumentButtons[index].interactable = false;
+        cat.SetInstrument(index);   //Added by JJ (Have to identify type of instrument)
         if (instrumentSprite.GetComponent<Animator>() == null)
         {
             instrumentSprite.AddComponent<Animator>();
