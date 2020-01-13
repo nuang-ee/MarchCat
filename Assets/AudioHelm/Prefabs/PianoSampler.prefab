@@ -68,7 +68,7 @@ MonoBehaviour:
     maxKey: 55
     minVelocity: 0
     maxVelocity: 1
-    lastScheduled: 0
+    lastScheduled: 975.0826666666667
   - audioClip: {fileID: 8300000, guid: 06e49b8950a574611abe68f968cb99f5, type: 3}
     mixer: {fileID: 0}
     rootKey: 60
@@ -76,7 +76,7 @@ MonoBehaviour:
     maxKey: 67
     minVelocity: 0
     maxVelocity: 1
-    lastScheduled: 0
+    lastScheduled: 977.792
   - audioClip: {fileID: 8300000, guid: 650e397c0f0d9453287b92d5425c0610, type: 3}
     mixer: {fileID: 0}
     rootKey: 72
@@ -101,8 +101,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 06e49b8950a574611abe68f968cb99f5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
-  m_Pitch: 0.9438743
+  m_Volume: 1
+  m_Pitch: 1.2599211
   Loop: 0
   Mute: 0
   Spatialize: 0

@@ -28,19 +28,22 @@ public class MarchingSequencerHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //CatPlayList = GameObject.Find("CatPlaylist").catPlaylist;
+        CatPlayList = GameObject.Find("CatPlaylist").GetComponentsInChildren<CatList>();
         clock = GameObject.Find("Clock").GetComponent<AudioHelmClock>();
+        print("catplaylist : " + CatPlayList.Length);
+        clock.pause = true;
         order = 0;
         Started = false;
 
         PlayButton = GameObject.Find("PlayButton").GetComponent<Button>();
-        PauseButton = GameObject.Find("PlayButton").GetComponent<Button>();
-        StopButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        PauseButton = GameObject.Find("PauseButton").GetComponent<Button>();
+        StopButton = GameObject.Find("StopButton").GetComponent<Button>();
 
         PlayButton.onClick.AddListener(delegate //If press start button
         {
             if (!Started)//Initialize sequencers and start to play
             {
+                print("lets start : "+order);
                 Started = true;
                 currentCatList = CatPlayList[order];
                 currentSequencer = ExtractSequencersFromCatList(currentCatList);
@@ -53,8 +56,10 @@ public class MarchingSequencerHandler : MonoBehaviour
                 {
                     attachNextSequencer(pivot_sequencer);
                 });
+                clock.pause = false;
             }
             else {//Resume
+                print("pause");
                 clock.pause = false;
             }
         });
@@ -76,9 +81,12 @@ public class MarchingSequencerHandler : MonoBehaviour
     List<Sequencer> ExtractSequencersFromCatList(CatList catlist) {
         List<Sequencer> extractedSequencer = new List<Sequencer>();
         List<Cat> extractedCatList = catlist.catlist;
+        
         foreach (Cat cat in extractedCatList) {
+            print("get in to the extraction part");
             extractedSequencer.Add(cat.sequencer);
         }
+        print("catlist.catlist = " + extractedCatList.Count);
         return extractedSequencer;
     }
 
@@ -105,7 +113,7 @@ public class MarchingSequencerHandler : MonoBehaviour
 
 
     void SequencerReadyToStart(Sequencer sequencer) {
-        sequencer.loop = false;
+        sequencer.loop = true;
         sequencer.StartOnNextCycle();
     }
 
