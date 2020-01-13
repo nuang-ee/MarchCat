@@ -8,9 +8,6 @@ using AudioHelm;
 
 public class PatternHandler : MonoBehaviour
 {
-    
-    public AudioHelm.AudioHelmClock clock;
-    public AudioHelm.Sequencer sequencer;
     public int key;
     public string InstName;
     public Button ResetButton;
@@ -19,8 +16,8 @@ public class PatternHandler : MonoBehaviour
     private List<AudioHelm.Note> existingNotes = new List<AudioHelm.Note>();
     private int count;
     private Color initColor;
-
-    
+    private Sequencer sequencer;
+    private AudioHelmClock clock;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +25,40 @@ public class PatternHandler : MonoBehaviour
         patternElements = GetComponentsInChildren<Toggle>();
         Debug.Log("NoteSet # of toggle : " + patternElements.Length);
         count = 0;
+
+        clock = GameObject.Find("Clock").GetComponent<AudioHelmClock>();
+
+        //GameObject DrumSequencer = GameObject.Find("DrumKit01Sequencer");
+        //GameObject SynthSequencer = GameObject.Find("SynthSequencer");
+        //GameObject BassSequencer = GameObject.Find("BassSequencer");
+        //GameObject GuitarSequencer = GameObject.Find("GuitarSequencer");
+
+
+        CatList Catlist = GameObject.Find("CatList").GetComponent<CatList>();
+        Cat currentCat = Catlist.catlist[Catlist.catlist.Count - 1];
+
+        print(currentCat.instrumentName);
+
+        if (currentCat.instrumentName == "drum")
+        {
+            sequencer = GameObject.Find("DrumKit01Sequencer").GetComponent<Sequencer>();
+        }
+        else if (currentCat.instrumentName == "synthesizer")
+        {
+            sequencer = GameObject.Find("SynthSequencer").GetComponent<Sequencer>();
+        }
+        else if (currentCat.instrumentName == "bass")
+        {
+            sequencer = GameObject.Find("BassSequencer").GetComponent<Sequencer>();
+        }
+        else if (currentCat.instrumentName == "guitar")
+        {
+            sequencer = GameObject.Find("GuitarSequencer").GetComponent<Sequencer>();
+        }
+        else {
+            print("this is not good");
+        }
+
         if (sequencer == null) print("null!");
         sequencer.Clear();
         Color normalColor = patternElements[0].colors.normalColor;

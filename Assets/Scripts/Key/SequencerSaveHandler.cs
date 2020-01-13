@@ -9,9 +9,9 @@ public class SequencerSaveHandler : MonoBehaviour
 {
 
     public Button DrumSaveButton;
-    public Sequencer Drumsequencer;
     public Button KeyboardSaveButton;
-    public Sequencer Keyboardsequencer;
+    private GameObject Drumsequencer;
+    private GameObject Keyboardsequencer;
 
     private string CatInstrument;
     // Start is called before the first frame update
@@ -24,19 +24,20 @@ public class SequencerSaveHandler : MonoBehaviour
 
         if (CatInstrument == "bass")
         {
-            Keyboardsequencer = GameObject.Find("BassSequencer").GetComponent<Sequencer>();
+            Keyboardsequencer = GameObject.Find("BassSequencer");
         }
         else if (CatInstrument == "drum")
         {
             //Empty..
+            Drumsequencer = GameObject.Find("DrumKit01Sequencer");
         }
         else if (CatInstrument == "guitar")
         {
-            Keyboardsequencer = GameObject.Find("GuitarSequencer").GetComponent<Sequencer>();
+            Keyboardsequencer = GameObject.Find("GuitarSequencer");
         }
         else if (CatInstrument == "synthesizer")
         {
-            Keyboardsequencer = GameObject.Find("SynthSequencer").GetComponent<Sequencer>();
+            Keyboardsequencer = GameObject.Find("SynthSequencer");
         }
         else {
             //This is not good
@@ -56,8 +57,11 @@ public class SequencerSaveHandler : MonoBehaviour
         CatList catlist = GameObject.Find("CatList").GetComponent<CatList>();
         Debug.Log("SaveSequenceDataToCat : " + catlist.catlist.Count);
         Cat currentCat = catlist.catlist[catlist.catlist.Count - 1];
+
+        Drumsequencer.name = Drumsequencer.name + (catlist.catlist.Count - 1);
+        Drumsequencer.SetActive(false);
         DontDestroyOnLoad(Drumsequencer);
-        currentCat.SetSequencer(Drumsequencer);
+        currentCat.SetSequencer(Drumsequencer.GetComponent<Sequencer>());
         Drumsequencer.transform.parent = catlist.catObjectList[catlist.catObjectList.Count - 1].transform;
         SceneManager.LoadScene(0);
     }
@@ -67,8 +71,11 @@ public class SequencerSaveHandler : MonoBehaviour
         CatList catlist = GameObject.Find("CatList").GetComponent<CatList>();
         Debug.Log("SaveSequenceDataToCat : " + catlist.catlist.Count);
         Cat currentCat = catlist.catlist[catlist.catlist.Count - 1];
+
+        Keyboardsequencer.name = Keyboardsequencer.name + (catlist.catlist.Count - 1);
+        Keyboardsequencer.SetActive(false);
         DontDestroyOnLoad(Keyboardsequencer);
-        currentCat.SetSequencer(Keyboardsequencer);
+        currentCat.SetSequencer(Keyboardsequencer.GetComponent<Sequencer>());
         Keyboardsequencer.transform.parent = catlist.catObjectList[catlist.catObjectList.Count - 1].transform;
         SceneManager.LoadScene(0);
     }

@@ -268,7 +268,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 737163454}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1008,6 +1008,7 @@ GameObject:
   - component: {fileID: 321120818}
   - component: {fileID: 321120817}
   - component: {fileID: 321120816}
+  - component: {fileID: 321120819}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1063,6 +1064,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &321120819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321120815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b978814c8a9680f4290ec82e8a415f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &331036262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4739,8 +4752,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1117515612}
   m_HandleRect: {fileID: 1117515611}
   m_Direction: 2
-  m_Value: 0.99999976
-  m_Size: 0.70750004
+  m_Value: 0.99999946
+  m_Size: 0.7074999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
