@@ -37,16 +37,7 @@ public class CatMarchBegin : MonoBehaviour
         oneBarObject = catPlayList.transform.GetChild(0).gameObject;
         nextBarObject = catPlayList.transform.GetChild(1).gameObject;
 
-
-        oneBarObject.transform.position = start; 
-        for (int i = 0; i < oneBarObject.transform.childCount; i++) {
-            oneBarObject.transform.GetChild(i).gameObject.SetActive(true);
-            oneBarObject.transform.GetChild(i).localScale = new Vector3(3, 3, 3);
-            oneBarObject.transform.GetChild(i).position = oneBarObject.transform.position + new Vector3(i * 0.5f, -i, 0);
-            startList.Add(oneBarObject.transform.position + new Vector3(i * 0.5f, -i, 0));
-            goalList.Add(goal + new Vector3(i * 0.5f, -i, 0));
-
-        }
+        SetOneRow();
     }
 
     
@@ -62,11 +53,27 @@ public class CatMarchBegin : MonoBehaviour
         oneBarObject.transform.position = Vector3.Lerp(start, goal, t);
 
         if (oneBarObject.transform.position.x <= goal.x) {
+            oneBarObject.SetActive(false);
             trackIndicator += 1;
             if (trackIndicator >= 4) trackIndicator = 0;
             Debug.Log(trackIndicator.ToString());
             oneBarObject = nextBarObject;
             nextBarObject = catPlayList.transform.GetChild(trackIndicator).gameObject;
+            SetOneRow();
+        }
+    }
+
+    private void SetOneRow() {
+        oneBarObject.SetActive(true);
+        oneBarObject.transform.position = start; 
+        startList.Clear();
+        goalList.Clear();
+        for (int i = 0; i < oneBarObject.transform.childCount; i++) {
+            oneBarObject.transform.GetChild(i).gameObject.SetActive(true);
+            oneBarObject.transform.GetChild(i).localScale = new Vector3(3, 3, 3);
+            oneBarObject.transform.GetChild(i).position = oneBarObject.transform.position + new Vector3(i * 0.5f, -i, 0);
+            startList.Add(oneBarObject.transform.position + new Vector3(i * 0.5f, -i, 0));
+            goalList.Add(goal + new Vector3(i * 0.5f, -i, 0));
         }
     }
     
