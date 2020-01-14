@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using AudioHelm;
+using UnityEngine.SceneManagement;
 
 public class MarchingUIHandler : MonoBehaviour
 {
@@ -34,5 +35,8 @@ public class MarchingUIHandler : MonoBehaviour
             clock.bpm = (int)BPMSlider.value;
             BPMSliderText.text = "BPM : " + clock.bpm;
         });
+    }
+    public void sceneChanger() {
+        SceneManager.LoadScene(0);
     }
 }

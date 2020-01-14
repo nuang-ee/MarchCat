@@ -23,6 +23,7 @@ public class CatMarchBegin : MonoBehaviour
 
     private int trackIndicator = 0;
     private AudioHelmClock clock;
+    private List<Transform> MarchingCatList = new List<Transform>();
 
 
     void Awake() {
@@ -48,6 +49,7 @@ public class CatMarchBegin : MonoBehaviour
                 else {
                     temp.GetChild(1).localPosition = new Vector3(-0.03f, 0, 0);    //adjust instrument position
                 }
+                MarchingCatList.Add(temp);
             }
             catPlayList.transform.GetChild(i).localPosition = new Vector3((1.1f / 4f) * i * cameraWidth, -cameraHeight * 0.05f, 0);
         }
@@ -107,6 +109,10 @@ public class CatMarchBegin : MonoBehaviour
             goalList.Add(goal + new Vector3(i * 0.5f, -i, 0));
         }
     }
-    
 
+    public void EndMarch() {
+        for (int i = 0; i < MarchingCatList.Count; i++) {
+            Destroy(MarchingCatList[i].gameObject);
+        }
+    }
 }
