@@ -20,14 +20,14 @@ public class MarchingUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        BPMSliderText.text = "BPM = " + clock.bpm.ToString();
     }
 
     void SetBPMSlider() {
         BPMSlider = GameObject.Find("Slider").GetComponentInChildren<Slider>();
         BPMSliderText = GameObject.Find("BPMTitle").GetComponentInChildren<Text>();
-        BPMSlider.value = 120;
-        BPMSliderText.text = "BPM : 120";
+        BPMSlider.value = clock.bpm;
+        
 
         BPMSlider.onValueChanged.AddListener(delegate
         {
