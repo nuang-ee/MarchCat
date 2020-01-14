@@ -44,6 +44,7 @@ public class MarchingSequencerHandler : MonoBehaviour
             if (!Started)//Initialize sequencers and start to play
             {
                 print("lets start : "+order);
+                
                 Started = true;
                 currentCatList = CatPlayList[order];
                 currentSequencer = ExtractSequencersFromCatList(currentCatList);
@@ -59,7 +60,7 @@ public class MarchingSequencerHandler : MonoBehaviour
                 clock.pause = false;
             }
             else {//Resume
-                print("pause");
+                print("resume");
                 clock.pause = false;
             }
         });
@@ -81,7 +82,7 @@ public class MarchingSequencerHandler : MonoBehaviour
     List<Sequencer> ExtractSequencersFromCatList(CatList catlist) {
         List<Sequencer> extractedSequencer = new List<Sequencer>();
         List<Cat> extractedCatList = catlist.catlist;
-        
+        print("extractedCatList : " +  extractedCatList.Count);
         foreach (Cat cat in extractedCatList) {
             print("get in to the extraction part");
             extractedSequencer.Add(cat.sequencer);
@@ -93,18 +94,31 @@ public class MarchingSequencerHandler : MonoBehaviour
 
     void attachNextSequencer(Sequencer sequencer) {
         int beat_index = ((int)sequencer.GetSequencerPosition()) % 16;
+        print(beat_index);
         if (beat_index == 15) // beat index = 15 : prepare next sequencers
         {
-            nextSequencer = ExtractSequencersFromCatList(CatPlayList[order + 1]); //Prepare next sequencers
-            foreach (Sequencer seq in nextSequencer) {
-                SequencerReadyToStart(seq);
+            if (order + 1 < CatPlayList.Length) {
+                print("next order : " + (order));
+                nextSequencer = ExtractSequencersFromCatList(CatPlayList[order]); //Prepare next sequencers
+                foreach (Sequencer seq in nextSequencer)
+                {
+                    SequencerReadyToStart(seq);
+                }
             }
+            
+            
         }
         else if (beat_index == 0) { // beat index = 0 : set current sequencer's active = false (except pivot)
+            print("it this true?");
             order = order + 1;
             foreach (Sequencer seq in currentSequencer) {
-                if (pivot_sequencer != seq) {
+                if (pivot_sequencer != seq)
+                {
+                    print("this is not pivot sequencer");
                     seq.gameObject.SetActive(false);
+                }
+                else {
+                    seq.loop = false;
                 }
             }
             currentSequencer = nextSequencer;
@@ -113,6 +127,7 @@ public class MarchingSequencerHandler : MonoBehaviour
 
 
     void SequencerReadyToStart(Sequencer sequencer) {
+        sequencer.gameObject.SetActive(true);
         sequencer.loop = true;
         sequencer.StartOnNextCycle();
     }

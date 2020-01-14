@@ -19,6 +19,10 @@ public class PatternHandler : MonoBehaviour
     private Sequencer sequencer;
     private AudioHelmClock clock;
     private HelmPatch patch;
+    private float velocity;
+    private int beat;
+    private Text positionText;
+    private Cat currentCat;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +40,8 @@ public class PatternHandler : MonoBehaviour
 
 
         CatList Catlist = GameObject.Find("CatList").GetComponent<CatList>();
-        Cat currentCat = Catlist.catlist[Catlist.catlist.Count - 1];
-
+        currentCat = Catlist.catlist[Catlist.catlist.Count - 1];
+        positionText = GameObject.Find("Position").GetComponent<Text>();
         
 
         print(currentCat.instrumentName);
@@ -68,6 +72,27 @@ public class PatternHandler : MonoBehaviour
         }
         else {
             print("this is not good");
+        }
+
+        switch (currentCat.catType) {
+            case "plain":
+                velocity = 0.7f;
+                beat = 16;
+                break;
+            case "strong":
+                velocity = 1.0f;
+                beat = 16;
+                break;
+            case "sensitive":
+                velocity = 0.4f;
+                beat = 16;
+                break;
+            case "supreme":
+                velocity = 0.7f;
+                beat = 32;
+                break;
+            default:
+                break;
         }
 
         ResetButton = GameObject.Find("ResetButton").GetComponent<Button>();
@@ -112,7 +137,7 @@ public class PatternHandler : MonoBehaviour
         else {
             if (toggle.isOn == true)
             {
-                AudioHelm.Note note = sequencer.AddNote(key, selected_idx, selected_idx + 1, 1.0f);
+                AudioHelm.Note note = sequencer.AddNote(key, selected_idx, selected_idx + 1, velocity);
                 existingNotes = sequencer.GetAllNotes();
                 //Debug.Log("After AddNote : " + existingNotes.Count);
             }
@@ -144,7 +169,8 @@ public class PatternHandler : MonoBehaviour
         patternElements[count].colors = currentColor;
 
         //count = (count + 1) % 16;
-        count = ((int)sequencer.GetSequencerPosition()+3 + 15) % 16;
+        //count = ((int)sequencer.GetSequencerPosition()+3 + 15) % 16;
+        count = ((int)sequencer.GetSequencerPosition() + 3) % beat;
     }
 
     public void ResetNote() {
@@ -156,5 +182,99 @@ public class PatternHandler : MonoBehaviour
             }
         }
         //existingNotes = new List<AudioHelm.Note>();
+    }
+
+    public void SetPositionText(Toggle toggle) {
+        int selected_idx = -1;
+        for (int i = 0; i < patternElements.Length; i++)
+        {
+            if (patternElements[i] == toggle)
+            {
+                selected_idx = i;
+                break;
+            }
+        }
+        Debug.Log("selected_idx : " + selected_idx.ToString());
+        if (selected_idx == -1)
+        {
+            Debug.Log("PatternHandler : SetSequencerNoteErr");
+        }
+        else
+        {
+            int name = key % 12;
+            int height = (key / 12) - 2;
+
+            switch (name) {
+                case 0:
+                    if (currentCat.instrumentName == "drum")
+                    {
+                        positionText.text = "Bass Drum " + selected_idx;
+                    }
+                    else {
+                        positionText.text = "C" + height + " " + selected_idx;
+                    }
+                    
+                    break;
+                case 1:
+                    if (currentCat.instrumentName == "drum")
+                    {
+                        positionText.text = "Snare " + selected_idx;
+                    }
+                    else
+                    {
+                        positionText.text = "C#" + height + " " + selected_idx;
+                    }
+                    break;
+                case 2:
+                    positionText.text = "D" + height + " " + selected_idx;
+                    break;
+                case 3:
+                    positionText.text = "D#" + height + " " + selected_idx;
+                    break;
+                case 4:
+                    positionText.text = "E" + height + " " + selected_idx;
+                    break;
+                case 5:
+                    positionText.text = "F" + height + " " + selected_idx;
+                    break;
+                case 6:
+                    positionText.text = "F#" + height + " " + selected_idx;
+                    break;
+                case 7:
+                    positionText.text = "G" + height + " " + selected_idx;
+                    break;
+                case 8:
+                    if (currentCat.instrumentName == "drum")
+                    {
+                        positionText.text = "Hihat " + selected_idx;
+                    }
+                    else
+                    {
+                        positionText.text = "G#" + height + " " + selected_idx;
+                    }
+                    break;
+                case 9:
+                    if (currentCat.instrumentName == "drum")
+                    {
+                        positionText.text = "Crash " + selected_idx;
+                    }
+                    else
+                    {
+                        positionText.text = "A" + height + " " + selected_idx;
+                    }
+                    break;
+                case 10:
+                    positionText.text = "A#" + height + " " + selected_idx;
+                    break;
+                case 11:
+                    positionText.text = "B" + height + " " + selected_idx;
+                    break;
+            }
+
+        }
+    }
+
+    public void cleanPositionText() {
+        positionText.text = "Position";
     }
 }

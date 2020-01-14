@@ -27,7 +27,7 @@ public class catSelector : MonoBehaviour
         }
         catTypeButtons[index].interactable = false;
         cat.SetCatType(index);
-
+        print("catclick = "+index);
 
         string path = "Animation/characters/cat_" + index.ToString();
 

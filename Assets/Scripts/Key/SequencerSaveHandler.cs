@@ -10,6 +10,8 @@ public class SequencerSaveHandler : MonoBehaviour
 
     public Button DrumSaveButton;
     public Button KeyboardSaveButton;
+    public Button Drum32SaveButton;
+    public Button Keyboard32SaveButton;
     private GameObject Drumsequencer;
     private GameObject Keyboardsequencer;
 
@@ -51,6 +53,14 @@ public class SequencerSaveHandler : MonoBehaviour
         {
             SaveKeyboardSequenceDataToCat();
         });
+        Drum32SaveButton.onClick.AddListener(delegate
+        {
+            SaveDrumSequenceDataToCat();
+        });
+        Keyboard32SaveButton.onClick.AddListener(delegate
+        {
+            SaveKeyboardSequenceDataToCat();
+        });
     }
 
     void SaveDrumSequenceDataToCat() {
@@ -63,6 +73,7 @@ public class SequencerSaveHandler : MonoBehaviour
         DontDestroyOnLoad(Drumsequencer);
         currentCat.SetSequencer(Drumsequencer.GetComponent<Sequencer>());
         Drumsequencer.transform.parent = catlist.catObjectList[catlist.catObjectList.Count - 1].transform;
+
         SceneManager.LoadScene(0);
     }
 
