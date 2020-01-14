@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sequence.unity
     guid: 935e567fcc211b74c9c333c18e16de47
+  - enabled: 1
+    path: Assets/Scenes/PlaySong.unity
+    guid: 4de1e1156c1898041bd8b27ae91a9791
   m_configObjects: {}

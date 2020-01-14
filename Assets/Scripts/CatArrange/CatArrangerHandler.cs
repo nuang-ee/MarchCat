@@ -12,11 +12,13 @@ public class CatArrangerHandler : MonoBehaviour
     private static GameObject catListObject;
     private List<GameObject> catObjectList;
     public CatArrangerGoback catArrangerGoback;
+    public GameObject CatPlaylist;
 
     private Cat pointedCat;
     private AudioHelmClock clock;
     void Awake()
     {
+        CatPlaylist = GameObject.Find("CatPlaylist");
         catListObject = GameObject.Find("CatList");
         catObjectList = catListObject.GetComponent<CatList>().catObjectList;
         //Initiate Slot Elements
@@ -67,6 +69,19 @@ public class CatArrangerHandler : MonoBehaviour
             print(entry2);
             trigger.triggers.Add(entry2);
         }
+        
+        for (int i = 0; i < CatPlaylist.transform.childCount; i++) {
+            List<GameObject> templist = CatPlaylist.transform.GetChild(i).GetComponent<CatPlaylist>().catObjectList;
+            foreach (GameObject temp in templist) {
+                //Loads cat clones again!
+                temp.GetComponent<CapsuleCollider2D>().enabled = true;
+                temp.GetComponent<Dragger>().enabled = true;
+                temp.GetComponent<CatInstanceRemove>().enabled = true;
+                temp.GetComponent<Rigidbody2D>().gravityScale = 1;
+                temp.GetComponent<CatInstanceRemove>().meow_scream = Resources.Load("AudioHelm/meow") as AudioSource;
+                temp.SetActive(true);
+            }
+        }
     }
 
     public void Onclick(GameObject catObject) {
@@ -88,7 +103,6 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.GetComponent<CapsuleCollider2D>().size = new Vector2(0.318f, 0.392f);
         catInstance.AddComponent<Dragger>();
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
-        catArrangerGoback.CatCloneList.Add(catInstance);
     }
     void OnMouseEnter_fun(GameObject catObject) {
         catObject.SetActive(true);

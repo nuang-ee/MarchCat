@@ -12,7 +12,7 @@ public class ClickToLoadAsync : MonoBehaviour
     private AsyncOperation async;
     public void ClickAsync(int level) 
     {
-        if (level == 2) {
+        if (level == 2 || level == 5) {
             GameObject bgm = GameObject.Find("BackgroundMusic");
             Destroy(bgm);
         }
