@@ -143,6 +143,8 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.AddComponent<CatInstanceRemove>();
         catInstance.GetComponent<CatInstanceRemove>().meow_scream = 
             GameObject.Find("meow_scream").GetComponent<AudioSource>();
+        catInstance.GetComponent<CatInstanceRemove>().Handler =
+            this;
         GameObject hinge = GameObject.Find("HingePoint").gameObject;
         if (hinge == null) Debug.Log("no hinge");
         GameObject newHingePoint = Instantiate(hinge, catInstance.transform.position, Quaternion.identity);
@@ -227,5 +229,51 @@ public class CatArrangerHandler : MonoBehaviour
         catObjectList.Remove(catObject);
         Destroy(newSlot);
         Destroy(catObject);
+    }
+
+    public void catListRemovebyexit(GameObject gameobject) {
+        bool flag = false;
+        bool another_flag = false;
+        List<GameObject> removeCatList = null;
+        for (int i = 0; i < createdInstance.Count; i++)
+        {
+            print(gameobject.name);
+            print(createdInstance[i][0].name);
+            print(createdInstance[i][0].name.Substring(0, createdInstance[i][0].name.Length - 7));
+            if (createdInstance[i][0].name == gameobject.name)
+            { // Compare name except (Clone) suffix
+                print("good");
+                flag = true;
+                removeCatList = createdInstance[i];
+                //createdInstance[i].Remove(gameobject);
+                break;
+            }
+        }
+        if (!flag)
+        {
+            print("remove button is not work.");
+        }
+        else {
+            for (int i = 0; i < removeCatList.Count; i++)
+            {
+                print(gameobject.GetInstanceID());
+                print(removeCatList[i].GetInstanceID());
+                //print(createdInstance[i][0].name.Substring(0, createdInstance[i][0].name.Length - 7));
+                if (gameobject.GetInstanceID() == removeCatList[i].GetInstanceID())
+                { // Compare name except (Clone) suffix
+                    print("good");
+                    removeCatList.Remove(removeCatList[i]);
+                    if (removeCatList.Count == 0) {
+                        createdInstance.Remove(removeCatList);
+                    }
+                    another_flag = true;
+                    //createdInstance[i].Remove(gameobject);
+                    break;
+                }
+            }
+        }
+        if (!another_flag) {
+            print("Something wrong...");
+        }
     }
 }

@@ -12,6 +12,8 @@ public class CatInstanceRemove : MonoBehaviour
     private float cameraHeight = new float();
     private float cameraWidth = new float();
 
+
+    public CatArrangerHandler Handler;
     void Awake() {
         Camera cam = Camera.main;
         cameraHeight = 2f * cam.orthographicSize;
@@ -27,6 +29,7 @@ public class CatInstanceRemove : MonoBehaviour
         {
             Debug.Log("mewo");
             meow_scream.Play();
+            Handler.catListRemovebyexit(gameObject);
             Destroy(gameObject);
         }
     }
