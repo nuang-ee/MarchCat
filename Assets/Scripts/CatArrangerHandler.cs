@@ -37,7 +37,14 @@ public class CatArrangerHandler : MonoBehaviour
                 itembutton.GetChild(1).position = new Vector3(tempPosition.position.x, tempPosition.position.y - 0.2f , 0);
             }
             itembutton.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate{Onclick(cat);});
+            //Set remove button
+            itembutton.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate 
+                {
+                    //OnRemoveButtonClicked(Destroy(this));
+                }
+            );
 
+            //Play their sound while mouse is on the object.
             EventTrigger trigger = itembutton.GetChild(0).gameObject.AddComponent<EventTrigger>();
             EventTrigger.Entry entry1 = new EventTrigger.Entry
             {
@@ -49,6 +56,7 @@ public class CatArrangerHandler : MonoBehaviour
             print(entry1);
             trigger.triggers.Add(entry1);
 
+            //When the mouse gone, the sound will be stop.
             EventTrigger.Entry entry2 = new EventTrigger.Entry
             {
                 eventID = EventTriggerType.PointerExit
@@ -86,18 +94,26 @@ public class CatArrangerHandler : MonoBehaviour
         catObject.SetActive(true);
         pointedCat = catObject.GetComponent<Cat>();
         clock = new AudioHelmClock();
+        clock.Reset();
         Sequencer sequencer = pointedCat.sequencer;
         print(sequencer);
         sequencer.StartOnNextCycle();
+        sequencer.loop = true;
     }
 
     void OnMouseExit_fun(GameObject catObject)
     {
-
-        clock.pause = true;
-        clock.Reset();
+        pointedCat.sequencer.loop = false;
+        clock = null;
         pointedCat = null;
         catObject.SetActive(false);
+    }
+
+    void OnRemoveButtonClicked(GameObject catObject)
+    {
+        pointedCat.sequencer.loop = false;
         clock = null;
+        pointedCat = null;
+        catObject.SetActive(false);
     }
 }

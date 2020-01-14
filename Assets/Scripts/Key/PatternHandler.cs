@@ -60,11 +60,11 @@ public class PatternHandler : MonoBehaviour
         {
             print("Get into the bass");
             sequencer = GameObject.Find("BassSequencer").GetComponent<Sequencer>();
-            patch = GameObject.Find("basspatch").GetComponent<HelmPatch>();
-            print(patch);
+            //patch = GameObject.Find("basspatch").GetComponent<HelmPatch>();
+            //print(patch);
 
-            print(GameObject.Find("BassSequencer").GetComponent<HelmController>());
-            GameObject.Find("BassSequencer").GetComponent<HelmController>().LoadPatch(patch);
+            //print(GameObject.Find("BassSequencer").GetComponent<HelmController>());
+            //GameObject.Find("BassSequencer").GetComponent<HelmController>().LoadPatch(patch);
             key = key - 12;
         }
         else if (currentCat.instrumentName == "guitar")
