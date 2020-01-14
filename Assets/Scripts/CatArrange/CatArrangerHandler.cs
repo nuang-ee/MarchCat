@@ -109,7 +109,13 @@ public class CatArrangerHandler : MonoBehaviour
     }
 
     public void Onclick(GameObject catObject, GameObject newSlot) {
+
+        catObject.transform.GetChild(0).gameObject.SetActive(true);
+        catObject.transform.GetChild(1).gameObject.SetActive(true);
         GameObject catInstance = Instantiate(catObject, new Vector3(0, 2.5f, 0), Quaternion.identity);
+        catObject.transform.GetChild(0).gameObject.SetActive(false);
+        catObject.transform.GetChild(1).gameObject.SetActive(false);
+
         bool alreadyin = false;
         //catInstance.transform.SetParent(newSlot.transform.GetChild(1), true);
 
@@ -154,6 +160,8 @@ public class CatArrangerHandler : MonoBehaviour
     void OnMouseEnter_fun(GameObject catObject) {
         catObject.SetActive(true);
         pointedCat = catObject.GetComponent<Cat>();
+        catObject.transform.GetChild(0).gameObject.SetActive(false);
+        catObject.transform.GetChild(1).gameObject.SetActive(false);
         //clock = new AudioHelmClock();
         //clock.Reset();
         //clock.pause = false;
@@ -174,6 +182,8 @@ public class CatArrangerHandler : MonoBehaviour
         //clock.Reset();
         //clock = null;
         pointedCat = null;
+        catObject.transform.GetChild(0).gameObject.SetActive(true);
+        catObject.transform.GetChild(1).gameObject.SetActive(true);
         catObject.SetActive(false);
     }
 
