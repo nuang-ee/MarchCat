@@ -27,8 +27,15 @@ public class CatArrangerGoback : MonoBehaviour
                 CatPlaylistObject.transform.GetChild(i).GetComponent<CatPlaylist>().catObjectList.AddRange(
                     SortingTileList.GetChild(i).GetChild(1).GetComponent<AreaDetector>().catObjectList);
                 foreach (GameObject clone in SortingTileList.GetChild(i).GetChild(1).GetComponent<AreaDetector>().catObjectList) {
+                    //making Clones invisible and not falling!
                     clone.SetActive(false);
                     clone.transform.SetParent(CatPlaylistObject.transform.GetChild(i), false);
+                    clone.GetComponent<Rigidbody2D>().gravityScale = 0;
+                    clone.GetComponent<CapsuleCollider2D>().enabled = false;
+                    clone.GetComponent<Dragger>().enabled = false;
+                    clone.transform.rotation = Quaternion.identity;
+                    clone.GetComponent<CatInstanceRemove>().meow_scream = null;
+                    clone.GetComponent<CatInstanceRemove>().enabled = false;
                 }
             }
         }

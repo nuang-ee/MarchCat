@@ -39,9 +39,13 @@ public class CatArrangerHandler : MonoBehaviour
         
         for (int i = 0; i < CatPlaylist.transform.childCount; i++) {
             List<GameObject> templist = CatPlaylist.transform.GetChild(i).GetComponent<CatPlaylist>().catObjectList;
-            Debug.Log("asd >> " + templist.Count.ToString());
             foreach (GameObject temp in templist) {
-                
+                //Loads cat clones again!
+                temp.GetComponent<CapsuleCollider2D>().enabled = true;
+                temp.GetComponent<Dragger>().enabled = true;
+                temp.GetComponent<CatInstanceRemove>().enabled = true;
+                temp.GetComponent<Rigidbody2D>().gravityScale = 1;
+                temp.GetComponent<CatInstanceRemove>().meow_scream = Resources.Load("AudioHelm/meow") as AudioSource;
                 temp.SetActive(true);
             }
         }

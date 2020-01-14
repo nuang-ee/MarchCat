@@ -24,8 +24,8 @@ public class MarchingUIHandler : MonoBehaviour
     }
 
     void SetBPMSlider() {
-        BPMSlider = GameObject.Find("BPMController").GetComponentInChildren<Slider>();
-        BPMSliderText = GameObject.Find("BPMController").GetComponentInChildren<Text>();
+        BPMSlider = GameObject.Find("Slider").GetComponentInChildren<Slider>();
+        BPMSliderText = GameObject.Find("BPMTitle").GetComponentInChildren<Text>();
         BPMSlider.value = 120;
         BPMSliderText.text = "BPM : 120";
 
