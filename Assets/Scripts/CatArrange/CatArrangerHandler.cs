@@ -42,7 +42,7 @@ public class CatArrangerHandler : MonoBehaviour
             //Set remove button
             itembutton.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate 
                 {
-                    //OnRemoveButtonClicked(Destroy(this));
+                    OnRemoveButtonClicked(cat, newSlot);
                 }
             );
 
@@ -86,6 +86,8 @@ public class CatArrangerHandler : MonoBehaviour
 
     public void Onclick(GameObject catObject, GameObject newSlot) {
         GameObject catInstance = Instantiate(catObject, new Vector3(0, 2.5f, 0), Quaternion.identity);
+        catInstance.transform.SetParent(newSlot.transform.GetChild(1));
+
         catInstance.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
         catInstance.transform.GetChild(1).localScale = new Vector3(1, 1, 1);
         catInstance.transform.GetChild(1).position = new Vector3(0, 2.5f, 0);
@@ -105,7 +107,7 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
         catInstance.GetComponentInChildren<Sequencer>().enabled = false;
 
-        //catInstance.transform.SetParent(newSlot.Get.transform, false);
+        
     }
 
     void OnMouseEnter_fun(GameObject catObject) {
@@ -134,11 +136,20 @@ public class CatArrangerHandler : MonoBehaviour
         catObject.SetActive(false);
     }
 
-    void OnRemoveButtonClicked(GameObject catObject)
+    void OnRemoveButtonClicked(GameObject catObject, GameObject newSlot)
     {
-        pointedCat.sequencer.loop = false;
-        //clock = null;
-        pointedCat = null;
-        catObject.SetActive(false);
+        //Remove instanciated objects.
+        Transform instances =  newSlot.transform.GetChild(1);
+        Cat[] catInstances = instances.GetComponentsInChildren<Cat>();
+        for (int i = 0; i < catInstances.Length; i++) {
+            Destroy(catInstances[i].gameObject);
+        }
+
+        //Remove slot object.
+        //catListObject = GameObject.Find("CatList");
+        //catObjectList = catListObject.GetComponent<CatList>().catObjectList;
+        catObjectList.Remove(catObject);
+        Destroy(newSlot);
+        Destroy(catObject);
     }
 }
