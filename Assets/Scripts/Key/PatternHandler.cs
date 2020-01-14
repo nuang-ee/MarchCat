@@ -23,6 +23,7 @@ public class PatternHandler : MonoBehaviour
     private int beat;
     private Text positionText;
     private Cat currentCat;
+    private float beatdivider;
 
     // Start is called before the first frame update
     void Start()
@@ -59,11 +60,11 @@ public class PatternHandler : MonoBehaviour
         {
             print("Get into the bass");
             sequencer = GameObject.Find("BassSequencer").GetComponent<Sequencer>();
-            patch = GameObject.Find("basspatch").GetComponent<HelmPatch>();
-            print(patch);
+            //patch = GameObject.Find("basspatch").GetComponent<HelmPatch>();
+            //print(patch);
 
-            print(GameObject.Find("BassSequencer").GetComponent<HelmController>());
-            GameObject.Find("BassSequencer").GetComponent<HelmController>().LoadPatch(patch);
+            //print(GameObject.Find("BassSequencer").GetComponent<HelmController>());
+            //GameObject.Find("BassSequencer").GetComponent<HelmController>().LoadPatch(patch);
             key = key - 12;
         }
         else if (currentCat.instrumentName == "guitar")
@@ -78,18 +79,22 @@ public class PatternHandler : MonoBehaviour
             case "plain":
                 velocity = 0.7f;
                 beat = 16;
+                beatdivider = 1f;
                 break;
             case "strong":
                 velocity = 1.0f;
                 beat = 16;
+                beatdivider = 1f;
                 break;
             case "sensitive":
                 velocity = 0.4f;
                 beat = 16;
+                beatdivider = 1f;
                 break;
             case "supreme":
                 velocity = 0.7f;
                 beat = 32;
+                beatdivider = 2f;
                 break;
             default:
                 break;
@@ -137,13 +142,13 @@ public class PatternHandler : MonoBehaviour
         else {
             if (toggle.isOn == true)
             {
-                AudioHelm.Note note = sequencer.AddNote(key, selected_idx, selected_idx + 1, velocity);
+                AudioHelm.Note note = sequencer.AddNote(key, (selected_idx)/beatdivider, (selected_idx + 1)/beatdivider, velocity);
                 existingNotes = sequencer.GetAllNotes();
                 //Debug.Log("After AddNote : " + existingNotes.Count);
             }
             else {
                 
-                AudioHelm.Note existing_note = sequencer.GetNoteInRange(key, selected_idx, selected_idx + 1);
+                AudioHelm.Note existing_note = sequencer.GetNoteInRange(key, (selected_idx) / beatdivider, (selected_idx + 1) / beatdivider);
                 sequencer.RemoveNote(existing_note);
                 existingNotes.Remove(existing_note);
             }
@@ -154,23 +159,50 @@ public class PatternHandler : MonoBehaviour
         //ColorBlock newColorBlock;
         print(count);
         if (count == 0) {
-            ColorBlock prevcolor = patternElements[15].colors;
-            prevcolor.normalColor = initColor;
-            patternElements[15].colors = prevcolor;
+            if (currentCat.catType != "supreme")
+            {
+                ColorBlock prevcolor = patternElements[15].colors;
+                prevcolor.normalColor = initColor;
+                patternElements[15].colors = prevcolor;
+            }
+            else {
+                ColorBlock prevcolor = patternElements[30].colors;
+                prevcolor.normalColor = initColor;
+                patternElements[30].colors = prevcolor;
+            }
+            
         }
         else
         {
-            ColorBlock prevcolor = patternElements[count - 1].colors;
-            prevcolor.normalColor = initColor;
-            patternElements[count - 1].colors = prevcolor;
+            if (currentCat.catType != "supreme")
+            {
+                ColorBlock prevcolor = patternElements[count - 1].colors;
+                prevcolor.normalColor = initColor;
+                patternElements[count - 1].colors = prevcolor;
+            }
+            else
+            {
+                ColorBlock prevcolor = patternElements[count - 2].colors;
+                prevcolor.normalColor = initColor;
+                patternElements[count - 2].colors = prevcolor;
+            }
+
+            
         }
         ColorBlock currentColor = patternElements[count].colors;
         currentColor.normalColor = new Color(initColor.r + 0.2f, initColor.g + 0.2f, initColor.b + 0.2f);
         patternElements[count].colors = currentColor;
 
         //count = (count + 1) % 16;
-        //count = ((int)sequencer.GetSequencerPosition()+3 + 15) % 16;
-        count = ((int)sequencer.GetSequencerPosition() + 3) % beat;
+        //count = ((int)sequencer.GetSequencerPosition() + 3 + 15) % 16;
+        if (currentCat.catType != "supreme")
+        {
+            count = ((int)sequencer.GetSequencerPosition() + 3) % beat;
+        }
+        else
+        {
+            count = ((((int)sequencer.GetSequencerPosition() + 3)) * 2) % beat;
+        }
     }
 
     public void ResetNote() {

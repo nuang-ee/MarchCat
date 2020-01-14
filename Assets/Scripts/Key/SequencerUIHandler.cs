@@ -95,7 +95,7 @@ public class SequencerUIHandler : MonoBehaviour
 
         if (currentCat.catType == "supreme")
         {
-            sequencer.length = 32;
+            sequencer.length = 16;
         }
         else {
             sequencer.length = 16;
