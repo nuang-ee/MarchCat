@@ -10,9 +10,11 @@ public class CatArrangerHandler : MonoBehaviour
     private static GameObject catListObject;
     private List<GameObject> catObjectList;
     public CatArrangerGoback catArrangerGoback;
+    public GameObject CatPlaylist;
 
     void Awake()
     {
+        CatPlaylist = GameObject.Find("CatPlaylist");
         catListObject = GameObject.Find("CatList");
         catObjectList = catListObject.GetComponent<CatList>().catObjectList;
         //Initiate Slot Elements
@@ -33,6 +35,15 @@ public class CatArrangerHandler : MonoBehaviour
                 itembutton.GetChild(1).position = new Vector3(tempPosition.position.x, tempPosition.position.y - 0.2f , 0);
             }
             itembutton.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate{Onclick(cat);});
+        }
+        
+        for (int i = 0; i < CatPlaylist.transform.childCount; i++) {
+            List<GameObject> templist = CatPlaylist.transform.GetChild(i).GetComponent<CatPlaylist>().catObjectList;
+            Debug.Log("asd >> " + templist.Count.ToString());
+            foreach (GameObject temp in templist) {
+                
+                temp.SetActive(true);
+            }
         }
     }
 
@@ -55,6 +66,5 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.GetComponent<CapsuleCollider2D>().size = new Vector2(0.318f, 0.392f);
         catInstance.AddComponent<Dragger>();
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
-        catArrangerGoback.CatCloneList.Add(catInstance);
     }
 }

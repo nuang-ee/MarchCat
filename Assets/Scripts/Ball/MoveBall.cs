@@ -32,18 +32,18 @@ public class MoveBall : MonoBehaviour
         ballPos.x += moveSpeed * moveValue.x;
         ballPos.y += moveSpeed * moveValue.y;
         if (ballPos.x < minPos.x) {
-            moveValue.x *= -1;
+            moveValue.x *= Random.Range(-1.3f, -0.5f);
             ballPos.x += minPos.x - ballPos.x;
         } else if (ballPos.x > maxPos.x) {
-            moveValue.x *= -1;
+            moveValue.x *= Random.Range(-1.3f, -0.5f);
             ballPos.x += maxPos.x - ballPos.x;
         } 
 
         if (ballPos.y < minPos.y) {
-            moveValue.y *= -1;
+            moveValue.y *= Random.Range(-1.3f, -0.5f);
             ballPos.y += minPos.y - ballPos.y;
         } else if (ballPos.y > maxPos.y) {
-            moveValue.y *= -1;
+            moveValue.y *= Random.Range(-1.3f, -0.5f);
             ballPos.y += maxPos.y - ballPos.y;
         } 
         ballTf.position = ballPos;

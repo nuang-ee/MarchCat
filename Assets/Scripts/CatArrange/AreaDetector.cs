@@ -15,6 +15,7 @@ public class AreaDetector : MonoBehaviour
     public int index = -1;
 
     public List<Cat> catList = new List<Cat>();
+    public List<GameObject> catObjectList = new List<GameObject>();
     private List<AudioHelm.Sequencer> sequencerList;
     public Button startCat;
 
@@ -24,6 +25,7 @@ public class AreaDetector : MonoBehaviour
             if (other.gameObject.name != "PlayerCat") {
                 Debug.Log("entered");
                 catList.Add(other.gameObject.GetComponent<Cat>());
+                catObjectList.Add(other.gameObject);
             }
             if (other.gameObject.name == "PlayerCat") {
                 OnPlay();
@@ -37,6 +39,7 @@ public class AreaDetector : MonoBehaviour
                 Debug.Log("exit");
                 other.gameObject.GetComponent<Cat>().sequencer.enabled = false;
                 catList.Remove(other.gameObject.GetComponent<Cat>());
+                catObjectList.Remove(other.gameObject);
                 Debug.Log(AudioHelmClock.GetGlobalBeatTime().ToString());
             }
             if (other.gameObject.name == "PlayerCat") {
