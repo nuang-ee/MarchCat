@@ -42,6 +42,12 @@ public class CatMarchBegin : MonoBehaviour
                 temp.gameObject.SetActive(true);
                 temp.localPosition = new Vector3(j * 0.5f, -j, 0);
                 temp.localScale = new Vector3(3, 3, 3);
+                if (temp.GetComponent<Cat>().instrumentName == "synthesizer") {
+                    temp.GetChild(1).localPosition = new Vector3(-0.05f, -0.15f, 0);    //adjust instrument position
+                }
+                else {
+                    temp.GetChild(1).localPosition = new Vector3(-0.03f, 0, 0);    //adjust instrument position
+                }
             }
             catPlayList.transform.GetChild(i).localPosition = new Vector3((1.1f / 4f) * i * cameraWidth, -cameraHeight * 0.05f, 0);
         }
