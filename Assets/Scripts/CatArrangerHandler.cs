@@ -9,6 +9,7 @@ public class CatArrangerHandler : MonoBehaviour
     //private static CatList = 
     private static GameObject catListObject;
     private List<GameObject> catObjectList;
+    public CatArrangerGoback catArrangerGoback;
 
     void Awake()
     {
@@ -54,5 +55,6 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.GetComponent<CapsuleCollider2D>().size = new Vector2(0.318f, 0.392f);
         catInstance.AddComponent<Dragger>();
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
+        catArrangerGoback.CatCloneList.Add(catInstance);
     }
 }

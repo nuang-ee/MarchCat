@@ -69,11 +69,11 @@ public class SequencerSaveHandler : MonoBehaviour
         Cat currentCat = catlist.catlist[catlist.catlist.Count - 1];
 
         Drumsequencer.name = Drumsequencer.name + (catlist.catlist.Count - 1);
-        Drumsequencer.SetActive(false);
+        Drumsequencer.GetComponent<Sequencer>().enabled = false;
         DontDestroyOnLoad(Drumsequencer);
         currentCat.SetSequencer(Drumsequencer.GetComponent<Sequencer>());
         Drumsequencer.transform.parent = catlist.catObjectList[catlist.catObjectList.Count - 1].transform;
-
+        Drumsequencer.GetComponent<Sequencer>().loop = false;
         SceneManager.LoadScene(0);
     }
 
@@ -84,10 +84,11 @@ public class SequencerSaveHandler : MonoBehaviour
         Cat currentCat = catlist.catlist[catlist.catlist.Count - 1];
 
         Keyboardsequencer.name = Keyboardsequencer.name + (catlist.catlist.Count - 1);
-        Keyboardsequencer.SetActive(false);
+        Keyboardsequencer.GetComponent<Sequencer>().enabled = false;
         DontDestroyOnLoad(Keyboardsequencer);
         currentCat.SetSequencer(Keyboardsequencer.GetComponent<Sequencer>());
         Keyboardsequencer.transform.parent = catlist.catObjectList[catlist.catObjectList.Count - 1].transform;
+        Keyboardsequencer.GetComponent<Sequencer>().loop = false;
         SceneManager.LoadScene(0);
     }
 
