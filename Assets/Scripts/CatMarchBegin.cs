@@ -60,7 +60,7 @@ public class CatMarchBegin : MonoBehaviour
 
         //Moves one Row Together
         catPlayList.transform.position = Vector3.Lerp(start, goal, t);
-        Debug.Log(Vector3.Lerp(start, goal, t).x.ToString());
+        //Debug.Log(Vector3.Lerp(start, goal, t).x.ToString());
 
         if (catPlayList.transform.position.x <= -cameraWidth * 0.55f) {
             catPlayList.transform.position = start;
@@ -70,10 +70,20 @@ public class CatMarchBegin : MonoBehaviour
             }
         }
 
+        
         for (int i = 0; i < catPlayList.transform.childCount; i++) {
+            //set One Row's Position back to 0, and play music.
             if (catPlayList.transform.GetChild(i).position.x <= goal.x) {
                 catPlayList.transform.GetChild(i).localPosition = new Vector3((1.1f / 4f) * i * cameraWidth, -cameraHeight * 0.05f, 0);
             }
+            /*
+            if (catPlayList.transform.GetChild(i).position.x > Vector3.Lerp(start, goal, 0.25f).x) {
+                for (int j = 0; j < catPlayList.transform.GetChild(i).childCount; j++) {
+                    catPlayList.transform.GetChild(i).GetChild(j).GetChild(2).GetComponent<SampleSequencer>().loop = false;
+                }
+                
+            }
+            */
         }
     }
     

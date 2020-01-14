@@ -41,7 +41,7 @@ public class CatArrangerHandler : MonoBehaviour
             List<GameObject> templist = CatPlaylist.transform.GetChild(i).GetComponent<CatPlaylist>().catObjectList;
             foreach (GameObject temp in templist) {
                 //Loads cat clones again!
-                temp.GetComponent<CapsuleCollider2D>().enabled = true;
+                //temp.GetComponent<CapsuleCollider2D>().enabled = true;
                 temp.GetComponent<Dragger>().enabled = true;
                 temp.GetComponent<CatInstanceRemove>().enabled = true;
                 temp.GetComponent<Rigidbody2D>().gravityScale = 1;

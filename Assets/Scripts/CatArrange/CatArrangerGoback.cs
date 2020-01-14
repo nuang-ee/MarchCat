@@ -31,7 +31,7 @@ public class CatArrangerGoback : MonoBehaviour
                     clone.SetActive(false);
                     clone.transform.SetParent(CatPlaylistObject.transform.GetChild(i), false);
                     clone.GetComponent<Rigidbody2D>().gravityScale = 0;
-                    clone.GetComponent<CapsuleCollider2D>().enabled = false;
+                    //clone.GetComponent<CapsuleCollider2D>().enabled = false;
                     clone.GetComponent<Dragger>().enabled = false;
                     clone.transform.rotation = Quaternion.identity;
                     clone.GetComponent<CatInstanceRemove>().meow_scream = null;
