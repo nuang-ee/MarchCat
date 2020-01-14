@@ -38,7 +38,7 @@ public class CatArrangerHandler : MonoBehaviour
                 Transform tempPosition = itembutton.GetChild(1);
                 itembutton.GetChild(1).position = new Vector3(tempPosition.position.x, tempPosition.position.y - 0.2f , 0);
             }
-            itembutton.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate{Onclick(cat);});
+            itembutton.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate{Onclick(cat, newSlot);});
             //Set remove button
             itembutton.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate 
                 {
@@ -84,7 +84,7 @@ public class CatArrangerHandler : MonoBehaviour
         }
     }
 
-    public void Onclick(GameObject catObject) {
+    public void Onclick(GameObject catObject, GameObject newSlot) {
         GameObject catInstance = Instantiate(catObject, new Vector3(0, 2.5f, 0), Quaternion.identity);
         catInstance.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
         catInstance.transform.GetChild(1).localScale = new Vector3(1, 1, 1);
@@ -103,22 +103,33 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.GetComponent<CapsuleCollider2D>().size = new Vector2(0.318f, 0.392f);
         catInstance.AddComponent<Dragger>();
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
+        catInstance.GetComponentInChildren<Sequencer>().enabled = false;
+
+        //catInstance.transform.SetParent(newSlot.Get.transform, false);
     }
+
     void OnMouseEnter_fun(GameObject catObject) {
         catObject.SetActive(true);
         pointedCat = catObject.GetComponent<Cat>();
-        clock = new AudioHelmClock();
-        clock.Reset();
+        //clock = new AudioHelmClock();
+        //clock.Reset();
+        //clock.pause = false;
         Sequencer sequencer = pointedCat.sequencer;
         print(sequencer);
-        sequencer.StartOnNextCycle();
         sequencer.loop = true;
+        sequencer.enabled = true;
+        sequencer.StartOnNextCycle();
+        
     }
 
     void OnMouseExit_fun(GameObject catObject)
     {
         pointedCat.sequencer.loop = false;
-        clock = null;
+        pointedCat.sequencer.enabled = false;
+        print("exited");
+        //clock.pause = true;
+        //clock.Reset();
+        //clock = null;
         pointedCat = null;
         catObject.SetActive(false);
     }
@@ -126,7 +137,7 @@ public class CatArrangerHandler : MonoBehaviour
     void OnRemoveButtonClicked(GameObject catObject)
     {
         pointedCat.sequencer.loop = false;
-        clock = null;
+        //clock = null;
         pointedCat = null;
         catObject.SetActive(false);
     }
