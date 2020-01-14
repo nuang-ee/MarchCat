@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using AudioHelm;
 
 public class CatArrangerHandler : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class CatArrangerHandler : MonoBehaviour
     private List<GameObject> catObjectList;
     public CatArrangerGoback catArrangerGoback;
 
+    private Cat pointedCat;
+    private AudioHelmClock clock;
     void Awake()
     {
         catListObject = GameObject.Find("CatList");
@@ -33,6 +37,27 @@ public class CatArrangerHandler : MonoBehaviour
                 itembutton.GetChild(1).position = new Vector3(tempPosition.position.x, tempPosition.position.y - 0.2f , 0);
             }
             itembutton.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate{Onclick(cat);});
+
+            EventTrigger trigger = itembutton.GetChild(0).gameObject.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry1 = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerEnter
+            };
+            entry1.callback.AddListener((data) => { OnMouseEnter_fun(cat); });
+            print(trigger);
+            print(trigger.triggers);
+            print(entry1);
+            trigger.triggers.Add(entry1);
+
+            EventTrigger.Entry entry2 = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerExit
+            };
+            entry2.callback.AddListener((data) => { OnMouseExit_fun(cat); });
+            print(trigger);
+            print(trigger.triggers);
+            print(entry2);
+            trigger.triggers.Add(entry2);
         }
     }
 
@@ -56,5 +81,23 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.AddComponent<Dragger>();
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
         catArrangerGoback.CatCloneList.Add(catInstance);
+    }
+    void OnMouseEnter_fun(GameObject catObject) {
+        catObject.SetActive(true);
+        pointedCat = catObject.GetComponent<Cat>();
+        clock = new AudioHelmClock();
+        Sequencer sequencer = pointedCat.sequencer;
+        print(sequencer);
+        sequencer.StartOnNextCycle();
+    }
+
+    void OnMouseExit_fun(GameObject catObject)
+    {
+
+        clock.pause = true;
+        clock.Reset();
+        pointedCat = null;
+        catObject.SetActive(false);
+        clock = null;
     }
 }

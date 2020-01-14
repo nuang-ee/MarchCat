@@ -30,6 +30,7 @@ public class KeySoundHandler : MonoBehaviour
         else if (currentCat.instrumentName == "bass")
         {
             sequencer = GameObject.Find("BassSequencer").GetComponent<Sequencer>();
+            baseKey = baseKey - 12;
         }
         else if (currentCat.instrumentName == "guitar")
         {
@@ -39,6 +40,7 @@ public class KeySoundHandler : MonoBehaviour
         {
             print("this is not good");
         }
+        
 
         Button[] WhiteKeys = gameObject.transform.Find("WhiteKey").GetComponentsInChildren<Button>();
         Button[] BlackKeys = gameObject.transform.Find("BlackKey").GetComponentsInChildren<Button>();
