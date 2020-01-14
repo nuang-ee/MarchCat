@@ -15,12 +15,13 @@ public class CatArrangerHandler : MonoBehaviour
     public GameObject CatPlaylist;
 
     private Cat pointedCat;
-    private AudioHelmClock clock;
+    private List<List<GameObject>> createdInstance;
     void Awake()
     {
         CatPlaylist = GameObject.Find("CatPlaylist");
         catListObject = GameObject.Find("CatList");
         catObjectList = catListObject.GetComponent<CatList>().catObjectList;
+        createdInstance = new List<List<GameObject>>();
         //Initiate Slot Elements
         foreach (GameObject cat in catObjectList) {
             GameObject newSlot = Instantiate(slotPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -75,10 +76,33 @@ public class CatArrangerHandler : MonoBehaviour
             foreach (GameObject temp in templist) {
                 //Loads cat clones again!
                 //temp.GetComponent<CapsuleCollider2D>().enabled = true;
+
+                //Load instances to createdInstance list
+                bool alreadyin = false;
+                for (int j = 0; j < createdInstance.Count; j++)
+                {
+                    print(j + "th createdInstance List size" + createdInstance[j].Count);
+                    if (createdInstance[j][0].name == temp.name)
+                    { // Compared with name
+                        createdInstance[j].Add(temp);
+                        alreadyin = true;
+                        break;
+                    }
+                }
+                if (!alreadyin)
+                {
+                    print("insert new list!");
+                    List<GameObject> newObjectList = new List<GameObject>();
+                    newObjectList.Add(temp);
+                    createdInstance.Add(newObjectList);
+                }
+
                 temp.GetComponent<Dragger>().enabled = true;
                 temp.GetComponent<CatInstanceRemove>().enabled = true;
                 temp.GetComponent<Rigidbody2D>().gravityScale = 1;
                 temp.GetComponent<CatInstanceRemove>().meow_scream = Resources.Load("AudioHelm/meow") as AudioSource;
+                temp.GetComponentInChildren<Sequencer>().enabled = false;
+                //temp.GetComponent<Sequencer>().loop = false;
                 temp.SetActive(true);
             }
         }
@@ -86,11 +110,29 @@ public class CatArrangerHandler : MonoBehaviour
 
     public void Onclick(GameObject catObject, GameObject newSlot) {
         GameObject catInstance = Instantiate(catObject, new Vector3(0, 2.5f, 0), Quaternion.identity);
-        catInstance.transform.SetParent(newSlot.transform.GetChild(1));
+        bool alreadyin = false;
+        //catInstance.transform.SetParent(newSlot.transform.GetChild(1), true);
+
+        for (int i = 0; i < createdInstance.Count; i++) {
+            print(i + "th createdInstance List size" + createdInstance[i].Count);
+            if (createdInstance[i][0].name == catInstance.name) { // Compared with name
+                createdInstance[i].Add(catInstance);
+                alreadyin = true;
+                break;
+            }
+        }
+        
+        if (!alreadyin) {
+            print("insert new list!");
+            List<GameObject> newObjectList = new List<GameObject>();
+            newObjectList.Add(catInstance);
+            createdInstance.Add(newObjectList);
+        }
 
         catInstance.transform.GetChild(0).localScale = new Vector3(1, 1, 1);
         catInstance.transform.GetChild(1).localScale = new Vector3(1, 1, 1);
         catInstance.transform.GetChild(1).position = new Vector3(0, 2.5f, 0);
+        //catInstance.transform.GetChild(1).localPosition = new Vector3(0, 2.5f, 0);
         catInstance.SetActive(true);
         catInstance.AddComponent<CatInstanceRemove>();
         catInstance.GetComponent<CatInstanceRemove>().meow_scream = 
@@ -107,7 +149,6 @@ public class CatArrangerHandler : MonoBehaviour
         catInstance.GetComponent<Dragger>().rb = catInstance.GetComponent<Rigidbody2D>();
         catInstance.GetComponentInChildren<Sequencer>().enabled = false;
 
-        
     }
 
     void OnMouseEnter_fun(GameObject catObject) {
@@ -138,12 +179,37 @@ public class CatArrangerHandler : MonoBehaviour
 
     void OnRemoveButtonClicked(GameObject catObject, GameObject newSlot)
     {
+        List<GameObject> removeList = null;
         //Remove instanciated objects.
-        Transform instances =  newSlot.transform.GetChild(1);
-        Cat[] catInstances = instances.GetComponentsInChildren<Cat>();
-        for (int i = 0; i < catInstances.Length; i++) {
-            Destroy(catInstances[i].gameObject);
+        for (int i = 0; i < createdInstance.Count; i++) {
+            print(catObject.name);
+            print(createdInstance[i][0].name);
+            print(createdInstance[i][0].name.Substring(0, createdInstance[i][0].name.Length - 7));
+            if (createdInstance[i][0].name.Substring(0, createdInstance[i][0].name.Length - 7) == catObject.name) { // Compare name except (Clone) suffix
+                print("good");
+                removeList = createdInstance[i];
+                createdInstance.Remove(removeList);
+                break;
+            }
         }
+        if (removeList == null) {
+            print("remove button will not work.");
+        }
+        else
+        {
+            //print("Destroy them all");
+            print(removeList.Count);
+            for (int i = 0; i < removeList.Count; i++)
+            {
+                print("Destroy them all");
+                Destroy(removeList[i]);
+            }
+        }
+        //Transform instances =  newSlot.transform.GetChild(1);
+        //Cat[] catInstances = instances.GetComponentsInChildren<Cat>();
+        //for (int i = 0; i < catInstances.Length; i++) {
+        //    Destroy(catInstances[i].gameObject);
+        //}
 
         //Remove slot object.
         //catListObject = GameObject.Find("CatList");
